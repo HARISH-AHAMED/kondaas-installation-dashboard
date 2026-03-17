@@ -34,7 +34,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                         <BatteryCharging className="w-8 h-8 text-yellow-500" />
                         <span className="text-xl font-bold tracking-wider">KONDAAS</span>
                     </div>
-                    <button onClick={toggleSidebar} className="lg:hidden text-gray-400 hover:text-white">
+                    <button onClick={toggleSidebar} className="lg:hidden text-gray-400">
                         <X size={24} />
                     </button>
                 </div>
@@ -51,7 +51,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                                     `sidebar-btn-${item.id}`,
                                     activepath === item.id
                                         ? "bg-blue-600 text-white shadow-lg shadow-blue-500/30"
-                                        : "text-gray-400 hover:bg-gray-800 hover:text-white"
+                                        : "text-gray-400"
                                 )}
                             >
                                 <div className="mr-3 w-5 h-5 flex items-center justify-center">
@@ -73,7 +73,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 </nav>
 
                 <div className="absolute bottom-0 w-full p-4 border-t border-gray-800">
-                    <button className="flex items-center w-full px-4 py-3 text-sm font-medium text-gray-400 rounded-lg hover:bg-gray-800 hover:text-white transition-colors">
+                    <button className="flex items-center w-full px-4 py-3 text-sm font-medium text-gray-400 rounded-lg transition-colors">
                         <LogOut size={20} className="mr-3" />
                         Logout
                     </button>

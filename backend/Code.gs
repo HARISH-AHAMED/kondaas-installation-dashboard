@@ -22,26 +22,56 @@ function doGet(e) {
 function getData() {
   try {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = ss.getSheets()[0]; // Gets the first sheet
-    const rows = sheet.getDataRange().getValues();
-    const headers = rows[0];
-    const data = rows.slice(1);
     
-    // Map rows to objects based on headers
-    const formattedData = data.map(row => {
-      let obj = {};
-      row.forEach((cell, index) => {
-        // Convert headers to camelCase or keep as is. Using generic key for now.
-        // It's better to sanitize headers to be valid JSON keys
-        const header = headers[index].toString().trim();
-        obj[header] = cell;
-      });
-      return obj;
+    // We expect sheets named: "Residential", "Commercial", "WaterHeater"
+    // For fallback/robustness, we'll try to find them or just take the first 3 if names differ
+    const sheetNames = ["Residential", "Commercial", "WaterHeater"];
+    let dataObj = {
+      residential: [],
+      commercial: [],
+      waterHeater: []
+    };
+
+    sheetNames.forEach((name, idx) => {
+      let sheet = ss.getSheetByName(name);
+      
+      // Fallback: If named sheets don't exist, try getting them by index
+      if (!sheet) {
+        const allSheets = ss.getSheets();
+        if (allSheets.length > idx) {
+           sheet = allSheets[idx];
+        }
+      }
+
+      if (sheet) {
+        const rows = sheet.getDataRange().getValues();
+        if (rows.length > 0) {
+          const headers = rows[0];
+          const data = rows.slice(1);
+          
+          const formattedData = data.map(row => {
+            let obj = {};
+            row.forEach((cell, index) => {
+              const header = headers[index] ? headers[index].toString().trim() : `Col${index + 1}`;
+              obj[header] = cell;
+            });
+            // Automatically inject the category back into the row for easy mapping on the frontend
+            const categoryKey = name === "WaterHeater" ? "waterHeater" : name.toLowerCase();
+            obj.category = categoryKey;
+            return obj;
+          });
+
+          // Map to correct JSON key
+          if (name === "Residential" || idx === 0) dataObj.residential = formattedData;
+          if (name === "Commercial" || idx === 1) dataObj.commercial = formattedData;
+          if (name === "WaterHeater" || idx === 2) dataObj.waterHeater = formattedData;
+        }
+      }
     });
 
     return {
-      status: 'success',
-      data: formattedData
+       status: 'success',
+       data: dataObj
     };
 
   } catch (error) {

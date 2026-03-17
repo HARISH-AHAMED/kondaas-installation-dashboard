@@ -141,7 +141,7 @@ const Dashboard = () => {
                                         </thead>
                                         <tbody className="text-sm">
                                             {filteredData.slice(0, 10).map((item, idx) => (
-                                                <tr key={idx} className="border-b border-gray-50 last:border-0 hover:bg-gray-50">
+                                                <tr key={idx} className="border-b border-gray-50 last:border-0">
                                                     <td className="py-3 font-medium text-gray-900">{item.CustomerName}</td>
                                                     <td className="py-3 text-gray-600">{item.City}, {item.State}</td>
                                                     <td className="py-3 text-gray-900">{item.CapacityKW} kW</td>
@@ -189,7 +189,7 @@ const Dashboard = () => {
                                 <p className="text-blue-100 text-sm mb-4">
                                     Regular maintenance ensures 15% better efficiency in solar panels. content.
                                 </p>
-                                <button className="bg-white text-blue-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-50 transition-colors w-full">
+                                <button className="bg-white text-blue-600 px-4 py-2 rounded-lg text-sm font-semibold transition-colors w-full">
                                     View Maintenance Schedule
                                 </button>
                             </div>

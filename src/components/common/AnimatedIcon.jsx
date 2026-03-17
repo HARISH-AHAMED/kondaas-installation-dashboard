@@ -10,7 +10,7 @@ if (!customElements.get('lord-icon')) {
 
 const AnimatedIcon = ({
     src,
-    trigger = 'hover',
+    trigger,
     size, // string like "32px" or number
     colors, // object { primary: '#color', secondary: '#color' }
     delay,

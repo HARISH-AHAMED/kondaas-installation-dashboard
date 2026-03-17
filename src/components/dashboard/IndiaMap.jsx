@@ -1,10 +1,29 @@
 import React from 'react';
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet';
+
+const MapUpdater = ({ selectedState }) => {
+    const map = useMap();
+    React.useEffect(() => {
+        const flyOptions = {
+            duration: 1.5,
+            easeLinearity: 0.25, // Makes the zoom arc smooth without vibrating
+        };
+
+        if (!selectedState || selectedState === 'Overall') {
+            map.flyTo([11.1271, 78.6569], 7, flyOptions);
+        } else if (selectedState === 'Tamil Nadu') {
+            map.flyTo([11.1271, 78.6569], 7.2, flyOptions);
+        } else if (selectedState === 'Kerala') {
+            map.flyTo([10.8505, 76.2711], 7.5, flyOptions);
+        }
+    }, [selectedState, map]);
+    return null;
+};
 
 // Fix for default marker icon issues in React Leaflet if we were using Markers
 // We are using CircleMarkers so it is less of an issue, but good to know.
 
-const IndiaMap = ({ data, darkMode = false, className = "h-[400px]" }) => {
+const IndiaMap = ({ data, darkMode = false, selectedState = 'Overall', className = "h-[400px]" }) => {
     // Center of South India (Tamil Nadu focus)
     const center = [11.1271, 78.6569];
 
@@ -69,6 +88,21 @@ const IndiaMap = ({ data, darkMode = false, className = "h-[400px]" }) => {
         // Other South Indian Majors
         'kochi': [9.9312, 76.2673],
         'thiruvananthapuram': [8.5241, 76.9366],
+        'trivandrum': [8.5241, 76.9366],
+        'kozhikode': [11.2588, 75.7804],
+        'calicut': [11.2588, 75.7804],        // alternate name
+        'thrissur': [10.5276, 76.2144],
+        'palakkad': [10.7867, 76.6548],
+        'malappuram': [11.0730, 76.0740],
+        'kannur': [11.8745, 75.3704],
+        'kollam': [8.8932, 76.6141],
+        'alappuzha': [9.4981, 76.3388],
+        'kottayam': [9.5916, 76.5222],
+        'idukki': [9.9189, 76.9727],
+        'ernakulam': [9.9816, 76.2999],
+        'pathanamthitta': [9.2648, 76.7870],
+        'kasaragod': [12.4996, 74.9869],
+        'wayanad': [11.6854, 76.1320],
         'mysore': [12.2958, 76.6394],
         'visakhapatnam': [17.6868, 83.2185],
         'vijayawada': [16.5062, 80.6480],
@@ -95,8 +129,29 @@ const IndiaMap = ({ data, darkMode = false, className = "h-[400px]" }) => {
                     url={tileUrl}
                 />
 
-                {data && data.map((item, index) => {
-                    const normalizedCity = item.City ? item.City.toLowerCase().trim() : '';
+                <MapUpdater selectedState={selectedState} />
+
+                {React.useMemo(() => {
+                    if (!data) return [];
+                    const cityMap = {};
+
+                    data.forEach(item => {
+                        const city = item.City ? item.City.trim() : 'Unknown';
+                        if (!cityMap[city]) {
+                            cityMap[city] = {
+                                ...item,
+                                City: city,
+                                Installations: 0,
+                                Capacity_kW: 0
+                            };
+                        }
+                        cityMap[city].Installations += (Number(item.Installations) || 0);
+                        cityMap[city].Capacity_kW += (Number(item.Capacity_kW) || 0);
+                    });
+
+                    return Object.values(cityMap);
+                }, [data]).map((item, index) => {
+                    const normalizedCity = item.City ? item.City.toLowerCase() : '';
                     const coords = cityCoords[normalizedCity];
                     if (!coords) {
                         console.warn(`Missing coordinates for city: ${item.City}`);
@@ -108,14 +163,14 @@ const IndiaMap = ({ data, darkMode = false, className = "h-[400px]" }) => {
                             key={index}
                             center={coords}
                             pathOptions={{ color: '#D71920', fillColor: '#D71920', fillOpacity: 0.6 }}
-                            radius={5 + ((Number(item['Capacity_kW']) || 0) / 50)} // Adjusted radius for larger aggregate values
+                            radius={6} // Fixed size as requested by user
                         >
                             <Popup>
                                 <div className="p-2">
                                     <h3 className="font-bold text-gray-900">{item.City}</h3>
                                     <p className="text-gray-600">{item.State}</p>
-                                    <p className="text-blue-600 font-semibold">{item['Capacity_kW']} kW Capacity</p>
-                                    <p className="text-sm text-gray-500">Installations: {item['Installations']}</p>
+                                    <p className="text-blue-600 font-semibold">{item.Capacity_kW} kW Capacity</p>
+                                    <p className="text-sm text-gray-500">Installations: {item.Installations}</p>
                                 </div>
                             </Popup>
                         </CircleMarker>

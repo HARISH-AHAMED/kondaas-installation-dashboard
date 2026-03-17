@@ -15,7 +15,7 @@ const Layout = ({ children, onSearch, searchTerm }) => {
                     <div className="flex items-center">
                         <button
                             onClick={() => setSidebarOpen(true)}
-                            className="p-2 mr-4 text-gray-600 hover:bg-gray-100 rounded-lg lg:hidden"
+                            className="p-2 mr-4 text-gray-600 rounded-lg lg:hidden"
                         >
                             <Menu size={24} />
                         </button>
@@ -33,11 +33,11 @@ const Layout = ({ children, onSearch, searchTerm }) => {
                                 onChange={onSearch ? (e) => onSearch(e.target.value) : undefined}
                             />
                         </div>
-                        <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-full relative">
+                        <button className="p-2 text-gray-600 rounded-full relative">
                             <Bell size={24} />
                             <span className="absolute top-1 right-1 h-3 w-3 bg-red-500 rounded-full border-2 border-white"></span>
                         </button>
-                        <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-full">
+                        <button className="p-2 text-gray-600 rounded-full">
                             <User size={24} />
                         </button>
                     </div>
