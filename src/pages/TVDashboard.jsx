@@ -242,91 +242,90 @@ const TVDashboard = () => {
                         MODE 2: AMBIENT DASHBOARD (Default Grid) 
                         Active when no pincode is selected.
                     */
-                    <div className="flex-1 w-full grid grid-cols-[20vw_49vw_26vw] gap-[1.5vw] px-[1.5vw] pt-[2.5vh] pb-[2vh] overflow-hidden">
+                    <div className="flex-1 w-full grid grid-cols-[20vw_49vw_26vw] gap-[1.2vw] px-[1.5vw] pt-[1.5vh] pb-[1.5vh] overflow-hidden">
                         {/* LEFT COLUMN */}
-                        <div className="flex flex-col gap-[2vh] h-full justify-between overflow-hidden">
+                        <div className="flex flex-col gap-[1.5vh] h-full justify-between overflow-hidden">
                             {/* Installations Card */}
-                            <div className="bg-white p-[3vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
-                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red shrink-0">
-                                    <AnimatedIcon src="https://cdn.lordicon.com/surcxhka.json" trigger="loop" delay="2000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4.5vh" />
-                                    <span className="font-bold text-[1.8vh] uppercase tracking-[0.1em] text-slate-400">{!activeTab ? 'Overall' : activeTab}</span>
+                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
+                                <div className="flex items-center gap-[1.2vh] mb-[1vh] text-brand-red shrink-0">
+                                    <AnimatedIcon src="https://cdn.lordicon.com/surcxhka.json" trigger="loop" delay="2000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4vh" />
+                                    <span className="font-bold text-[1.6vh] uppercase tracking-[0.1em] text-slate-400">{!activeTab ? 'Overall' : activeTab}</span>
                                 </div>
                                 <div className="flex-1 flex flex-col justify-center min-h-0">
-                                    <div className="text-[8vh] font-black text-slate-900 leading-none tracking-tight">
+                                    <div className="text-[7.5vh] font-black text-slate-900 leading-none tracking-tight">
                                         {stats.homes.toLocaleString()}
                                     </div>
-                                    <p className="text-slate-500 text-[1.8vh] font-bold mt-[0.5vh] uppercase tracking-wider">Installations</p>
+                                    <p className="text-slate-500 text-[1.6vh] font-bold mt-[0.5vh] uppercase tracking-wider">Installations</p>
                                 </div>
                                 {!activeTab && (
-                                    <div className="mt-[1vh] text-[1.4vh] 2xl:text-[1.6vh] font-medium text-slate-400 shrink-0">
+                                    <div className="mt-[0.5vh] text-[1.3vh] 2xl:text-[1.5vh] font-medium text-slate-400 shrink-0">
                                         {(stateFilteredData.residential || []).reduce((acc, curr) => acc + (Number(curr['Installations']) || 0), 0).toLocaleString()} res / {(stateFilteredData.commercial || []).reduce((acc, curr) => acc + (Number(curr['Installations']) || 0), 0).toLocaleString()} com / {(stateFilteredData.waterHeater || []).reduce((acc, curr) => acc + (Number(curr['Installations']) || 0), 0).toLocaleString()} heater
                                     </div>
                                 )}
                             </div>
 
                             {/* Savings Card */}
-                            <div className="bg-white p-[3vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
-                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red shrink-0">
-                                    <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="2500" colors={{ primary: "#d71920", secondary: "#334155" }} size="4.5vh" />
-                                    <span className="font-bold text-[1.8vh] uppercase tracking-[0.1em] text-slate-400">Savings</span>
+                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
+                                <div className="flex items-center gap-[1.2vh] mb-[1vh] text-brand-red shrink-0">
+                                    <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="2500" colors={{ primary: "#d71920", secondary: "#334155" }} size="4vh" />
+                                    <span className="font-bold text-[1.6vh] uppercase tracking-[0.1em] text-slate-400">Savings</span>
                                 </div>
                                 <div className="flex-1 flex flex-col justify-center">
-                                    <div className="text-[8vh] font-black text-slate-900 leading-none tracking-tight">₹ {(stats.savings / 10000000).toFixed(2)} Cr</div>
-                                    <p className="text-slate-500 text-[1.8vh] font-medium mt-[0.5vh]">Estimated annual savings</p>
+                                    <div className="text-[7.5vh] font-black text-slate-900 leading-none tracking-tight">₹ {(stats.savings / 10000000).toFixed(2)} Cr</div>
+                                    <p className="text-slate-500 text-[1.6vh] font-medium mt-[0.5vh]">Estimated annual savings</p>
                                 </div>
                             </div>
 
                             {/* Capacity Card */}
-                            <div className="bg-white p-[3vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
-                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red shrink-0">
-                                    <AnimatedIcon src="https://cdn.lordicon.com/sbiheqdr.json" trigger="loop" delay="3000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4.5vh" />
-                                    <span className="font-bold text-[1.8vh] uppercase tracking-[0.1em] text-slate-400">Capacity</span>
+                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
+                                <div className="flex items-center gap-[1.2vh] mb-[1vh] text-brand-red shrink-0">
+                                    <AnimatedIcon src="https://cdn.lordicon.com/sbiheqdr.json" trigger="loop" delay="3000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4vh" />
+                                    <span className="font-bold text-[1.6vh] uppercase tracking-[0.1em] text-slate-400">Capacity</span>
                                 </div>
                                 <div className="flex-1 flex flex-col justify-center">
-                                    <div className="text-[8vh] font-black text-slate-900 leading-none tracking-tight">{Math.round(stats.capacity || 0).toLocaleString()} <span className="text-[4vh] text-slate-400 font-bold">kW</span></div>
-                                    <p className="text-slate-500 text-[1.8vh] font-medium mt-[0.5vh]">Total installed solar capacity</p>
+                                    <div className="text-[7.5vh] font-black text-slate-900 leading-none tracking-tight">{Math.round(stats.capacity || 0).toLocaleString()} <span className="text-[3.5vh] text-slate-400 font-bold">kW</span></div>
+                                    <p className="text-slate-500 text-[1.6vh] font-medium mt-[0.5vh]">Total installed solar capacity</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* CENTER COLUMN */}
-                        <div className="flex flex-col gap-[2vh] h-full overflow-hidden">
-                            <div className="flex-1 bg-white rounded-[2.5vh] border border-slate-100 shadow-xl relative overflow-hidden min-h-0">
+                        <div className="flex flex-col gap-[1.5vh] h-full overflow-hidden">
+                            <div className="flex-1 bg-white rounded-[2vh] border border-slate-100 shadow-xl relative overflow-hidden min-h-0">
                                 <IndiaMap data={filteredData} darkMode={false} selectedState={selectedState} className="h-full w-full" />
                                 <div className="absolute bottom-[2vh] left-1/2 -translate-x-1/2 w-full px-[2vw] z-[400]">
-                                    <div className="bg-white/95 backdrop-blur-sm rounded-full shadow-2xl border border-slate-200 flex items-center justify-between p-[0.8vh] pl-[2vw]">
-                                        <span className="text-slate-800 text-[2.5vh] font-bold">Find matches near you</span>
-                                        <button onClick={handleSearchNavigate} className="bg-brand-red text-white p-[1.5vh] rounded-full shadow-lg hover:scale-110 active:scale-95 transition-transform">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-[3.5vh] w-[3.5vh]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                                    <div className="bg-white/95 backdrop-blur-sm rounded-full shadow-2xl border border-slate-200 flex items-center justify-between p-[0.6vh] pl-[1.5vw]">
+                                        <span className="text-slate-800 text-[2.2vh] font-bold">Find matches near you</span>
+                                        <button onClick={handleSearchNavigate} className="bg-brand-red text-white p-[1.2vh] rounded-full shadow-lg hover:scale-110 active:scale-95 transition-transform">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-[3vh] w-[3vh]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
                                         </button>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Center Bottom Ratings (Styled like the old Top Reviews) */}
-                            <div className="bg-white rounded-[2.5vh] shadow-xl p-[2.5vh] flex flex-col justify-between h-[20vh] shrink-0 border border-slate-100 relative overflow-hidden">
-                                <div className="flex justify-between items-center mb-[1vh]">
+                            {/* Center Bottom Ratings (Adjusted height to fix overflow) */}
+                            <div className="bg-white rounded-[2vh] shadow-xl p-[1.8vh] flex flex-col justify-between h-[17vh] shrink-0 border border-slate-100 relative overflow-hidden">
+                                <div className="flex justify-between items-center mb-[0.5vh]">
                                     <div className="flex items-center gap-[0.5vw]">
-                                        <div className="w-[0.5vh] h-[3vh] bg-brand-red rounded-full"></div>
-                                        <h3 className="font-bold text-[2.2vh] text-slate-800">Top Reviews</h3>
+                                        <div className="w-[0.5vh] h-[2.5vh] bg-brand-red rounded-full"></div>
+                                        <h3 className="font-bold text-[1.8vh] text-slate-800">Top Reviews</h3>
                                     </div>
-                                    <span className="text-[1.3vh] font-semibold text-slate-400 bg-slate-100 px-[1vh] py-[0.5vh] rounded border">7,050 reviews</span>
+                                    <span className="text-[1.2vh] font-semibold text-slate-400 bg-slate-100 px-[0.8vh] py-[0.3vh] rounded border">7,050 reviews</span>
                                 </div>
                                 
-                                <div className="flex items-center gap-[3vw] flex-1">
-                                    <div className="flex flex-col items-center justify-center border-r border-slate-100 pr-[3vw] shrink-0 h-full">
-                                        <div className="flex items-baseline gap-1"><span className="text-[7.5vh] font-black leading-none text-slate-800 tracking-tight">4.8</span></div>
-                                        <div className="flex gap-0.5 mt-[-1vh] mb-[0.5vh]">
-                                            {[1, 2, 3, 4, 5].map(s => <svg key={s} className={`w-[2vh] h-[2vh] ${s <= 4 ? 'text-amber-400' : 'text-slate-200'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}
+                                <div className="flex items-center gap-[2.5vw] flex-1">
+                                    <div className="flex flex-col items-center justify-center border-r border-slate-100 pr-[2.5vw] shrink-0 h-full">
+                                        <div className="flex items-baseline gap-1"><span className="text-[6.5vh] font-black leading-none text-slate-800 tracking-tight">4.8</span></div>
+                                        <div className="flex gap-0.5 mt-[-0.8vh]">
+                                            {[1, 2, 3, 4, 5].map(s => <svg key={s} className={`w-[1.8vh] h-[1.8vh] ${s <= 4 ? 'text-amber-400' : 'text-slate-200'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}
                                         </div>
-                                        <span className="text-[1.1vh] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Based on 7,050 reviews</span>
                                     </div>
-                                    <div className="flex-1 space-y-[1.2vh]">
+                                    <div className="flex-1 space-y-[0.6vh]">
                                         {[{ l: 'Service', s: 4.9, p: 98 }, { l: 'Installation', s: 4.8, p: 96 }, { l: 'Support', s: 5.0, p: 100 }].map(x => (
-                                            <div key={x.l} className="flex items-center gap-[1vw]">
-                                                <span className="text-[1.5vh] font-bold text-slate-600 w-[7vw] shrink-0 truncate">{x.l}</span>
-                                                <div className="flex-1 h-[0.8vh] bg-slate-100 rounded-full overflow-hidden shadow-inner"><div className="h-full bg-brand-red rounded-full" style={{ width: `${x.p}%` }}></div></div>
-                                                <span className="text-[1.5vh] font-black text-brand-red w-[2vw] text-right shrink-0">{x.s}</span>
+                                            <div key={x.l} className="flex items-center gap-[0.8vw]">
+                                                <span className="text-[1.3vh] font-bold text-slate-600 w-[6vw] shrink-0 truncate">{x.l}</span>
+                                                <div className="flex-1 h-[0.6vh] bg-slate-100 rounded-full overflow-hidden shadow-inner"><div className="h-full bg-brand-red rounded-full" style={{ width: `${x.p}%` }}></div></div>
+                                                <span className="text-[1.3vh] font-black text-brand-red w-[2vw] text-right shrink-0">{x.s}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -335,68 +334,68 @@ const TVDashboard = () => {
                         </div>
 
                         {/* RIGHT COLUMN */}
-                        <div className="flex flex-col gap-[2vh] h-full overflow-hidden">
+                        <div className="flex flex-col gap-[1.5vh] h-full overflow-hidden">
                             {/* Legacy Customers (Reformatted to white theme) */}
-                            <div className="bg-white p-[2.5vh] rounded-[2.5vh] shadow-xl border border-slate-100 shrink-0">
-                                <div className="flex justify-between items-start mb-[1.5vh]">
-                                    <h3 className="font-bold text-[2.2vh] text-slate-800">Legacy Customers</h3>
-                                    <span className="text-emerald-500 text-[1.1vh] font-black uppercase tracking-widest">Verified Trust</span>
+                            <div className="bg-white p-[2vh] rounded-[2vh] shadow-xl border border-slate-100 shrink-0">
+                                <div className="flex justify-between items-start mb-[0.8vh]">
+                                    <h3 className="font-bold text-[1.8vh] text-slate-800">Legacy Customers</h3>
+                                    <span className="text-emerald-500 text-[1vh] font-black uppercase tracking-widest">Verified Trust</span>
                                 </div>
-                                <div className="space-y-[0.8vh] mb-[1.5vh]">
+                                <div className="space-y-[0.6vh] mb-[1vh]">
                                     {[{ l: '3 Year Customers', c: 420 }, { l: '5 Year Customers', c: 285 }, { l: '10 Year Customers', c: 128 }].map(t => (
-                                        <div key={t.l} className="flex justify-between items-center bg-slate-50/50 p-[1.2vh] rounded-xl border border-slate-100">
-                                            <span className="font-bold text-slate-600 text-[1.6vh]">{t.l}</span>
-                                            <span className="font-black text-slate-900 text-[1.8vh]">{t.c}</span>
+                                        <div key={t.l} className="flex justify-between items-center bg-slate-50/50 p-[1vh] rounded-xl border border-slate-100">
+                                            <span className="font-bold text-slate-600 text-[1.4vh]">{t.l}</span>
+                                            <span className="font-black text-slate-900 text-[1.6vh]">{t.c}</span>
                                         </div>
                                     ))}
                                 </div>
-                                <div className="bg-brand-red/5 p-[1.5vh] rounded-2xl border border-brand-red/10">
+                                <div className="bg-brand-red/5 p-[1vh] rounded-xl border border-brand-red/10">
                                     <div className="flex justify-between items-end mb-1">
-                                        <span className="text-brand-red font-black text-[1.2vh] uppercase tracking-widest">ACTIVE RETENTION</span>
-                                        <span className="font-black text-brand-red text-[2.2vh]">82%</span>
+                                        <span className="text-brand-red font-black text-[1.1vh] uppercase tracking-[0.05em]">ACTIVE RETENTION</span>
+                                        <span className="font-black text-brand-red text-[2vh]">82%</span>
                                     </div>
-                                    <div className="h-1.5 bg-white rounded-full overflow-hidden"><div className="h-full bg-brand-red rounded-full" style={{ width: '82%' }}></div></div>
+                                    <div className="h-[0.4vh] bg-white rounded-full overflow-hidden"><div className="h-full bg-brand-red rounded-full" style={{ width: '82%' }}></div></div>
                                 </div>
                             </div>
 
                             {/* Service Result (Rebranded to white theme) */}
-                            <div className="bg-white p-[2.5vh] rounded-[2.5vh] shadow-xl border border-slate-100 shrink-0">
-                                <h3 className="font-bold text-[1.6vh] text-slate-400 uppercase mb-[2vh] tracking-widest">Service Result</h3>
-                                <div className="flex flex-col gap-[1.5vh]">
-                                    <div className="flex items-center gap-[1.5vw]">
-                                        <div className="bg-slate-50 p-[1vh] rounded-xl border border-slate-100 shrink-0">
-                                            <AnimatedIcon src="https://cdn.lordicon.com/surcxhka.json" trigger="loop" delay="3500" colors={{ primary: "#d71920", secondary: "#334155" }} size="3.5vh" />
+                            <div className="bg-white p-[2vh] rounded-[2vh] shadow-xl border border-slate-100 shrink-0">
+                                <h3 className="font-bold text-[1.4vh] text-slate-400 uppercase mb-[1vh] tracking-widest">Service Result</h3>
+                                <div className="flex flex-col gap-[1vh]">
+                                    <div className="flex items-center gap-[1vw]">
+                                        <div className="bg-slate-50 p-[0.6vh] rounded-lg border border-slate-100 shrink-0">
+                                            <AnimatedIcon src="https://cdn.lordicon.com/surcxhka.json" trigger="loop" delay="3500" colors={{ primary: "#d71920", secondary: "#334155" }} size="3vh" />
                                         </div>
-                                        <div><p className="text-[3vh] font-black text-slate-800 leading-none">1,248</p><p className="text-[1.2vh] font-bold text-slate-400 uppercase mt-1">Services Completed</p></div>
+                                        <div><p className="text-[2.6vh] font-black text-slate-800 leading-none">1,248</p><p className="text-[1.1vh] font-bold text-slate-400 uppercase mt-0.5">Services Completed</p></div>
                                     </div>
-                                    <div className="flex items-center gap-[1.5vw]">
-                                        <div className="bg-slate-50 p-[1vh] rounded-xl border border-slate-100 shrink-0">
-                                            <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="4000" colors={{ primary: "#d71920", secondary: "#334155" }} size="3.5vh" />
+                                    <div className="flex items-center gap-[1vw]">
+                                        <div className="bg-slate-50 p-[0.6vh] rounded-lg border border-slate-100 shrink-0">
+                                            <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="4000" colors={{ primary: "#d71920", secondary: "#334155" }} size="3vh" />
                                         </div>
-                                        <div><p className="text-[3vh] font-black text-slate-800 leading-none">3.5 hrs</p><p className="text-[1.2vh] font-bold text-slate-400 uppercase mt-1">Avg Downtime</p></div>
+                                        <div><p className="text-[2.6vh] font-black text-slate-800 leading-none">3.5 hrs</p><p className="text-[1.1vh] font-bold text-slate-400 uppercase mt-0.5">Avg Downtime</p></div>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Testimonial Showcase (Reverted to white theme) */}
-                            <div className="bg-white p-[2.5vh] rounded-[2.5vh] shadow-xl flex-1 flex flex-col justify-between border border-slate-100 relative overflow-hidden">
+                            <div className="bg-white p-[2vh] rounded-[2vh] shadow-xl flex-1 flex flex-col justify-between border border-slate-100 relative overflow-hidden">
                                 <div>
-                                    <div className="flex items-center gap-[0.5vw] mb-[1.5vh]">
-                                        <div className="w-[0.5vh] h-[2.5vh] bg-brand-red rounded-full"></div>
-                                        <span className="text-slate-400 font-bold text-[1.2vh] uppercase tracking-[0.2em]">Customer Testimony</span>
+                                    <div className="flex items-center gap-[0.5vw] mb-[0.8vh]">
+                                        <div className="w-[0.5vh] h-[2vh] bg-brand-red rounded-full"></div>
+                                        <span className="text-slate-400 font-bold text-[1.1vh] uppercase tracking-[0.2em]">Customer Testimony</span>
                                     </div>
-                                    <p className="text-[1.7vh] font-medium text-slate-500 italic leading-relaxed line-clamp-4">"{REVIEWS[activeReview].text}"</p>
+                                    <p className="text-[1.5vh] font-medium text-slate-500 italic leading-relaxed line-clamp-3">"{REVIEWS[activeReview].text}"</p>
                                 </div>
-                                <div className="flex items-center gap-3 mt-[1vh]">
-                                    <div className="w-[5vh] h-[5vh] rounded-full bg-brand-red flex items-center justify-center font-black text-white text-[2vh] shadow-lg shadow-red-500/20">{REVIEWS[activeReview].author[0]}</div>
+                                <div className="flex items-center gap-2 mt-[0.5vh]">
+                                    <div className="w-[4vh] h-[4vh] rounded-full bg-brand-red flex items-center justify-center font-black text-white text-[1.6vh] shadow-lg shadow-red-500/20">{REVIEWS[activeReview].author[0]}</div>
                                     <div>
-                                        <p className="font-black text-slate-800 text-[1.8vh]">{REVIEWS[activeReview].author}</p>
-                                        <div className="flex gap-[0.2vw] mt-0.5">{[1, 2, 3, 4, 5].map(s => <svg key={s} className="w-[1.2vh] h-[1.2vh] text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}</div>
+                                        <p className="font-black text-slate-800 text-[1.5vh] leading-none">{REVIEWS[activeReview].author}</p>
+                                        <div className="flex gap-[0.1vw] mt-1">{[1, 2, 3, 4, 5].map(s => <svg key={s} className="w-[1vh] h-[1vh] text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}</div>
                                     </div>
                                 </div>
-                                <div className="flex gap-[0.5vw] justify-end mt-[1vh]">
+                                <div className="flex gap-[0.4vw] justify-end mt-[0.5vh]">
                                     {REVIEWS.map((_, i) => (
-                                        <div key={i} className={`h-[0.7vh] rounded-full transition-all duration-300 ${i === activeReview ? 'w-[2vw] bg-brand-red' : 'w-[1vh] bg-slate-200'}`}></div>
+                                        <div key={i} className={`h-[0.5vh] rounded-full transition-all duration-300 ${i === activeReview ? 'w-[1.5vw] bg-brand-red' : 'w-[0.8vh] bg-slate-200'}`}></div>
                                     ))}
                                 </div>
                             </div>
