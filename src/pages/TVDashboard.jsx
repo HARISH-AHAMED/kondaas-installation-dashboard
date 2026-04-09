@@ -242,7 +242,7 @@ const TVDashboard = () => {
                         MODE 2: AMBIENT DASHBOARD (Default Grid) 
                         Active when no pincode is selected.
                     */
-                    <div className="flex-1 w-full grid grid-cols-[18vw_46vw_25vw] gap-[1.5vw] px-[4vw] pb-[2vh] overflow-hidden">
+                    <div className="flex-1 w-full grid grid-cols-[20vw_49vw_26vw] gap-[1.5vw] px-[1.5vw] pt-[2.5vh] pb-[2vh] overflow-hidden">
                         {/* LEFT COLUMN */}
                         <div className="flex flex-col gap-[2vh] h-full justify-between overflow-hidden">
                             {/* Installations Card */}
@@ -364,11 +364,15 @@ const TVDashboard = () => {
                                 <h3 className="font-bold text-[1.6vh] text-slate-400 uppercase mb-[2vh] tracking-widest">Service Result</h3>
                                 <div className="flex flex-col gap-[1.5vh]">
                                     <div className="flex items-center gap-[1.5vw]">
-                                        <div className="bg-slate-50 p-[1.2vh] rounded-xl border border-slate-100"><Zap className="text-brand-red" size="2.2vh" /></div>
+                                        <div className="bg-slate-50 p-[1vh] rounded-xl border border-slate-100 shrink-0">
+                                            <AnimatedIcon src="https://cdn.lordicon.com/surcxhka.json" trigger="loop" delay="3500" colors={{ primary: "#d71920", secondary: "#334155" }} size="3.5vh" />
+                                        </div>
                                         <div><p className="text-[3vh] font-black text-slate-800 leading-none">1,248</p><p className="text-[1.2vh] font-bold text-slate-400 uppercase mt-1">Services Completed</p></div>
                                     </div>
                                     <div className="flex items-center gap-[1.5vw]">
-                                        <div className="bg-slate-50 p-[1.2vh] rounded-xl border border-slate-100"><IndianRupee className="text-brand-red" size="2.2vh" /></div>
+                                        <div className="bg-slate-50 p-[1vh] rounded-xl border border-slate-100 shrink-0">
+                                            <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="4000" colors={{ primary: "#d71920", secondary: "#334155" }} size="3.5vh" />
+                                        </div>
                                         <div><p className="text-[3vh] font-black text-slate-800 leading-none">3.5 hrs</p><p className="text-[1.2vh] font-bold text-slate-400 uppercase mt-1">Avg Downtime</p></div>
                                     </div>
                                 </div>
