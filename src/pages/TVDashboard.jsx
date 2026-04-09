@@ -242,14 +242,14 @@ const TVDashboard = () => {
                         MODE 2: AMBIENT DASHBOARD (Default Grid) 
                         Active when no pincode is selected.
                     */
-                    <div className="flex-1 w-full grid grid-cols-[20vw_49vw_26vw] gap-[1.5vw] px-[1.5vw] pb-[2vh] overflow-hidden">
+                    <div className="flex-1 w-full grid grid-cols-[18vw_46vw_25vw] gap-[1.5vw] px-[4vw] pb-[2vh] overflow-hidden">
                         {/* LEFT COLUMN */}
                         <div className="flex flex-col gap-[2vh] h-full justify-between overflow-hidden">
                             {/* Installations Card */}
                             <div className="bg-white p-[3vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
-                                <div className="flex items-center gap-[1vh] mb-[1.5vh] text-slate-400 shrink-0">
-                                    <Zap size="2.5vh" />
-                                    <span className="font-bold text-[1.8vh] uppercase tracking-[0.1em]">{!activeTab ? 'Overall' : activeTab}</span>
+                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red shrink-0">
+                                    <AnimatedIcon src="https://cdn.lordicon.com/surcxhka.json" trigger="loop" delay="2000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4.5vh" />
+                                    <span className="font-bold text-[1.8vh] uppercase tracking-[0.1em] text-slate-400">{!activeTab ? 'Overall' : activeTab}</span>
                                 </div>
                                 <div className="flex-1 flex flex-col justify-center min-h-0">
                                     <div className="text-[8vh] font-black text-slate-900 leading-none tracking-tight">
@@ -266,9 +266,9 @@ const TVDashboard = () => {
 
                             {/* Savings Card */}
                             <div className="bg-white p-[3vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
-                                <div className="flex items-center gap-[1vh] mb-[1.5vh] text-slate-400 shrink-0">
-                                    <IndianRupee size="2.5vh" />
-                                    <span className="font-bold text-[1.8vh] uppercase tracking-[0.1em]">Savings</span>
+                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red shrink-0">
+                                    <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="2500" colors={{ primary: "#d71920", secondary: "#334155" }} size="4.5vh" />
+                                    <span className="font-bold text-[1.8vh] uppercase tracking-[0.1em] text-slate-400">Savings</span>
                                 </div>
                                 <div className="flex-1 flex flex-col justify-center">
                                     <div className="text-[8vh] font-black text-slate-900 leading-none tracking-tight">₹ {(stats.savings / 10000000).toFixed(2)} Cr</div>
@@ -278,9 +278,9 @@ const TVDashboard = () => {
 
                             {/* Capacity Card */}
                             <div className="bg-white p-[3vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
-                                <div className="flex items-center gap-[1vh] mb-[1.5vh] text-slate-400 shrink-0">
-                                    <Zap size="2.5vh" />
-                                    <span className="font-bold text-[1.8vh] uppercase tracking-[0.1em]">Capacity</span>
+                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red shrink-0">
+                                    <AnimatedIcon src="https://cdn.lordicon.com/sbiheqdr.json" trigger="loop" delay="3000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4.5vh" />
+                                    <span className="font-bold text-[1.8vh] uppercase tracking-[0.1em] text-slate-400">Capacity</span>
                                 </div>
                                 <div className="flex-1 flex flex-col justify-center">
                                     <div className="text-[8vh] font-black text-slate-900 leading-none tracking-tight">{Math.round(stats.capacity || 0).toLocaleString()} <span className="text-[4vh] text-slate-400 font-bold">kW</span></div>
