@@ -238,66 +238,78 @@ const TVDashboard = () => {
                         </div>
                     </div>
                 ) : (
-                    <div className="w-full h-[90vh] grid grid-cols-[22vw_52vw_26vw] gap-[1.5vw] p-[2vw] overflow-hidden">
+                    /* 
+                        MODE 2: AMBIENT DASHBOARD (Default Grid) 
+                        Active when no pincode is selected.
+                    */
+                    <div className="flex-1 w-full grid grid-cols-[20vw_49vw_26vw] gap-[1.5vw] px-[1.5vw] pb-[2vh] overflow-hidden">
                         {/* LEFT COLUMN */}
-                        <div className="flex flex-col gap-[2vh] h-full justify-between">
-                            <div className="bg-white p-[3.5vh] rounded-[2.5vh] shadow-xl border border-slate-100 flex flex-col flex-1">
-                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red">
-                                    <AnimatedIcon src="https://cdn.lordicon.com/surcxhka.json" trigger="loop" delay="2000" colors={{ primary: "#d71920", secondary: "#334155" }} size="5vh" />
-                                    <span className="font-black text-[2.2vh] uppercase tracking-[0.1em] text-slate-700">{!activeTab ? 'Overall' : activeTab}</span>
+                        <div className="flex flex-col gap-[2vh] h-full justify-between overflow-hidden">
+                            <div className="bg-white p-[3vh] rounded-[2.5vh] shadow-xl border border-slate-100 flex flex-col flex-1 min-h-0">
+                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red shrink-0">
+                                    <AnimatedIcon src="https://cdn.lordicon.com/surcxhka.json" trigger="loop" delay="2000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4.5vh" />
+                                    <span className="font-black text-[2vh] uppercase tracking-[0.1em] text-slate-700 truncate">{!activeTab ? 'Overall' : activeTab}</span>
                                 </div>
-                                <div className="text-[7.5vh] font-black text-slate-900 leading-none tracking-tighter">
-                                    {stats.homes.toLocaleString()}
-                                    <p className="text-slate-400 text-[2vh] font-bold mt-[0.5vh] uppercase tracking-wider">Installations</p>
+                                <div className="flex-1 flex flex-col justify-center min-h-0">
+                                    <div className="text-[7vh] font-black text-slate-900 leading-none tracking-tighter">
+                                        {stats.homes.toLocaleString()}
+                                    </div>
+                                    <p className="text-slate-400 text-[1.8vh] font-bold mt-[0.5vh] uppercase tracking-wider">Installations</p>
                                 </div>
                                 {!activeTab && (
-                                    <div className="mt-[2vh] space-y-[0.5vh]">
-                                        <div className="flex items-center gap-2 text-[1.6vh] font-bold text-slate-500"><div className="w-2 h-2 rounded-full bg-brand-red"></div>{(stateFilteredData.residential || []).reduce((acc, curr) => acc + (Number(curr['Installations']) || 0), 0).toLocaleString()} Residential</div>
-                                        <div className="flex items-center gap-2 text-[1.6vh] font-bold text-slate-500"><div className="w-2 h-2 rounded-full bg-slate-400"></div>{(stateFilteredData.commercial || []).reduce((acc, curr) => acc + (Number(curr['Installations']) || 0), 0).toLocaleString()} Commercial</div>
+                                    <div className="mt-[1.5vh] space-y-[0.5vh] shrink-0">
+                                        <div className="flex items-center gap-2 text-[1.5vh] font-bold text-slate-500 truncate"><div className="w-2 h-2 rounded-full bg-brand-red shrink-0"></div>{(stateFilteredData.residential || []).reduce((acc, curr) => acc + (Number(curr['Installations']) || 0), 0).toLocaleString()} Residential</div>
+                                        <div className="flex items-center gap-2 text-[1.5vh] font-bold text-slate-500 truncate"><div className="w-2 h-2 rounded-full bg-slate-400 shrink-0"></div>{(stateFilteredData.commercial || []).reduce((acc, curr) => acc + (Number(curr['Installations']) || 0), 0).toLocaleString()} Commercial</div>
                                     </div>
                                 )}
                             </div>
-                            <div className="bg-white p-[3.5vh] rounded-[2.5vh] shadow-xl border border-slate-100 flex flex-col flex-1">
-                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red">
-                                    <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="2500" colors={{ primary: "#d71920", secondary: "#334155" }} size="5vh" />
-                                    <span className="font-black text-[2.2vh] uppercase tracking-[0.1em] text-slate-700">Savings</span>
+
+                            <div className="bg-white p-[3vh] rounded-[2.5vh] shadow-xl border border-slate-100 flex flex-col flex-1 min-h-0">
+                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red shrink-0">
+                                    <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="2500" colors={{ primary: "#d71920", secondary: "#334155" }} size="4.5vh" />
+                                    <span className="font-black text-[2vh] uppercase tracking-[0.1em] text-slate-700">Savings</span>
                                 </div>
-                                <div className="text-[7.5vh] font-black text-slate-900 leading-none tracking-tighter">₹ {(stats.savings / 10000000).toFixed(2)} Cr</div>
-                                <p className="text-slate-400 text-[2vh] font-bold uppercase tracking-wider">Annual Impact</p>
+                                <div className="flex-1 flex flex-col justify-center">
+                                    <div className="text-[7vh] font-black text-slate-900 leading-none tracking-tighter">₹ {(stats.savings / 10000000).toFixed(2)} Cr</div>
+                                    <p className="text-slate-400 text-[1.8vh] font-bold uppercase tracking-wider">Annual Impact</p>
+                                </div>
                             </div>
-                            <div className="bg-white p-[3.5vh] rounded-[2.5vh] shadow-xl border border-slate-100 flex flex-col flex-1">
-                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red">
-                                    <AnimatedIcon src="https://cdn.lordicon.com/sbiheqdr.json" trigger="loop" delay="3000" colors={{ primary: "#d71920", secondary: "#334155" }} size="5vh" />
-                                    <span className="font-black text-[2.2vh] uppercase tracking-[0.1em] text-slate-700">Capacity</span>
+
+                            <div className="bg-white p-[3vh] rounded-[2.5vh] shadow-xl border border-slate-100 flex flex-col flex-1 min-h-0">
+                                <div className="flex items-center gap-[1.2vh] mb-[1.5vh] text-brand-red shrink-0">
+                                    <AnimatedIcon src="https://cdn.lordicon.com/sbiheqdr.json" trigger="loop" delay="3000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4.5vh" />
+                                    <span className="font-black text-[2vh] uppercase tracking-[0.1em] text-slate-700">Capacity</span>
                                 </div>
-                                <div className="text-[7.5vh] font-black text-slate-900 leading-none tracking-tighter">{Math.round(stats.capacity || 0).toLocaleString()} <span className="text-[4vh] text-slate-400">kW</span></div>
-                                <p className="text-slate-400 text-[2vh] font-bold uppercase tracking-wider">Solar Power</p>
+                                <div className="flex-1 flex flex-col justify-center">
+                                    <div className="text-[7vh] font-black text-slate-900 leading-none tracking-tighter">{Math.round(stats.capacity || 0).toLocaleString()} <span className="text-[3.5vh] text-slate-400">kW</span></div>
+                                    <p className="text-slate-400 text-[1.8vh] font-bold uppercase tracking-wider">Solar Power</p>
+                                </div>
                             </div>
                         </div>
 
                         {/* CENTER COLUMN */}
-                        <div className="flex flex-col gap-[2vh] h-full">
-                            <div className="flex-1 bg-white rounded-[3vh] border shadow-2xl relative overflow-hidden">
+                        <div className="flex flex-col gap-[2vh] h-full overflow-hidden">
+                            <div className="flex-1 bg-white rounded-[3vh] border shadow-2xl relative overflow-hidden min-h-0">
                                 <IndiaMap data={filteredData} darkMode={false} selectedState={selectedState} className="h-full w-full" />
-                                <div className="absolute bottom-[3vh] left-1/2 -translate-x-1/2 w-full px-[3vw] z-[400]">
-                                    <button onClick={handleSearchNavigate} className="w-full bg-white text-slate-800 text-[2.5vh] font-black py-[2vh] rounded-full shadow-2xl border flex items-center justify-between px-[2vw]">
+                                <div className="absolute bottom-[2vh] left-1/2 -translate-x-1/2 w-full px-[2vw] z-[400]">
+                                    <button onClick={handleSearchNavigate} className="w-full bg-white/95 backdrop-blur-sm text-slate-800 text-[2.2vh] font-black py-[1.8vh] rounded-full shadow-2xl border flex items-center justify-between px-[2vw] hover:scale-[1.02] transition-transform">
                                         <span>Find installations near you</span>
-                                        <div className="bg-brand-red text-white p-2 rounded-full"><Zap size="3vh" /></div>
+                                        <div className="bg-brand-red text-white p-2 rounded-full shadow-lg"><Zap size="2.5vh" /></div>
                                     </button>
                                 </div>
                             </div>
-                            <div className="bg-white rounded-[3vh] shadow-xl p-[3vh] flex items-center gap-[4vw] h-[22vh]">
-                                <div className="flex flex-col items-center border-r pr-[4vw]">
-                                    <div className="flex items-baseline gap-1"><span className="text-[8vh] font-black">4.8</span><span className="text-slate-400 text-[2vh]">/ 5.0</span></div>
-                                    <div className="flex my-1">{[1, 2, 3, 4, 5].map(s => <Zap key={s} size="2vh" className={s <= 4 ? 'text-amber-400 fill-amber-400' : 'text-slate-200'} />)}</div>
-                                    <span className="text-[1.5vh] font-black text-slate-500 uppercase">7,050 Reviews</span>
+                            <div className="bg-white rounded-[3vh] shadow-xl p-[2.5vh] flex items-center gap-[3vw] h-[18vh] shrink-0">
+                                <div className="flex flex-col items-center border-r border-slate-100 pr-[3vw] shrink-0">
+                                    <div className="flex items-baseline gap-1"><span className="text-[7vh] font-black leading-none">4.8</span><span className="text-slate-400 text-[1.8vh]">/ 5.0</span></div>
+                                    <div className="flex my-0.5">{[1, 2, 3, 4, 5].map(s => <Zap key={s} size="1.8vh" className={s <= 4 ? 'text-amber-400 fill-amber-400' : 'text-slate-200'} />)}</div>
+                                    <span className="text-[1.3vh] font-black text-slate-400 uppercase tracking-widest">7,050 Reviews</span>
                                 </div>
-                                <div className="flex-1 space-y-[1.5vh]">
+                                <div className="flex-1 space-y-[1.2vh]">
                                     {[{ l: 'After Sales Service', s: 4.9, p: 98 }, { l: 'Quality of Installation', s: 4.8, p: 96 }, { l: 'Executive Support', s: 5.0, p: 100 }].map(x => (
-                                        <div key={x.l} className="flex items-center gap-[1.5vw]">
-                                            <span className="text-[1.8vh] font-bold text-slate-600 w-[12vw] truncate">{x.l}</span>
-                                            <div className="flex-1 h-[1.2vh] bg-slate-100 rounded-full overflow-hidden"><div className="h-full bg-brand-red" style={{ width: `${x.p}%` }}></div></div>
-                                            <span className="text-[2vh] font-black text-brand-red">{x.s}</span>
+                                        <div key={x.l} className="flex items-center gap-[1.2vw]">
+                                            <span className="text-[1.6vh] font-bold text-slate-600 w-[10vw] truncate shrink-0">{x.l}</span>
+                                            <div className="flex-1 h-[1vh] bg-slate-100 rounded-full overflow-hidden shadow-inner"><div className="h-full bg-brand-red rounded-full" style={{ width: `${x.p}%` }}></div></div>
+                                            <span className="text-[1.8vh] font-black text-brand-red w-[2.5vw] text-right shrink-0">{x.s}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -306,46 +318,52 @@ const TVDashboard = () => {
 
                         {/* RIGHT COLUMN */}
                         <div className="flex flex-col gap-[2vh] h-full overflow-hidden">
-                            <div className="bg-white p-[3vh] rounded-[3vh] shadow-xl border">
-                                <h3 className="font-black text-[2.5vh] mb-[2vh] flex justify-between">Legacy Customers <span className="text-emerald-500 text-[1.4vh] uppercase">Verified Trust</span></h3>
-                                <div className="space-y-[1vh] mb-[2vh]">
+                            <div className="bg-white p-[2.5vh] rounded-[3vh] shadow-xl border border-slate-50 shrink-0">
+                                <div className="flex justify-between items-start mb-[1.5vh]">
+                                    <h3 className="font-black text-[2.2vh] text-slate-800">Legacy Customers</h3>
+                                    <span className="bg-emerald-50 text-emerald-600 px-[1vh] py-[0.4vh] rounded-lg text-[1.1vh] font-black uppercase tracking-widest border border-emerald-100 shrink-0">Verified Trust</span>
+                                </div>
+                                <div className="space-y-[0.8vh] mb-[1.5vh]">
                                     {[{ l: '3 Year Customers', c: 420 }, { l: '5 Year Customers', c: 285 }, { l: '10 Year Customers', c: 128 }].map(t => (
-                                        <div key={t.l} className="flex justify-between bg-slate-50 p-[1.5vh] rounded-xl">
-                                            <span className="font-bold text-slate-600 text-[1.8vh]">{t.l}</span>
-                                            <span className="font-black text-slate-900">{t.c}</span>
+                                        <div key={t.l} className="flex justify-between items-center bg-slate-50/50 p-[1.2vh] rounded-xl border border-transparent hover:border-slate-100 transition-colors">
+                                            <span className="font-bold text-slate-600 text-[1.6vh]">{t.l}</span>
+                                            <span className="font-black text-slate-900 text-[1.8vh]">{t.c}</span>
                                         </div>
                                     ))}
                                 </div>
-                                <div className="bg-brand-red/5 p-[2vh] rounded-2xl border border-brand-red/10">
-                                    <div className="flex justify-between mb-1">
-                                        <span className="text-brand-red font-black text-[1.4vh]">ACTIVE RETENTION</span>
-                                        <span className="font-black text-brand-red text-[2vh]">82%</span>
+                                <div className="bg-brand-red/5 p-[1.8vh] rounded-2xl border border-brand-red/10 relative overflow-hidden">
+                                    <div className="flex justify-between items-end mb-1 relative z-10">
+                                        <span className="text-brand-red font-black text-[1.2vh] uppercase tracking-widest">ACTIVE RETENTION</span>
+                                        <span className="font-black text-brand-red text-[2.2vh]">82%</span>
                                     </div>
-                                    <div className="h-2 bg-slate-200 rounded-full"><div className="h-full bg-brand-red rounded-full" style={{ width: '82%' }}></div></div>
+                                    <div className="h-2 bg-white rounded-full overflow-hidden"><div className="h-full bg-brand-red rounded-full" style={{ width: '82%' }}></div></div>
                                 </div>
                             </div>
 
-                            <div className="bg-brand-red rounded-[3vh] p-[3vh] text-white">
-                                <h3 className="font-black opacity-80 uppercase text-[1.6vh] mb-2 tracking-widest">Service Result</h3>
-                                <div className="flex items-center gap-4 mb-4">
-                                    <div className="bg-white/10 p-2 rounded-xl"><Zap /></div>
-                                    <div><p className="text-[3.5vh] font-black leading-none">1,248</p><p className="text-[1.2vh] opacity-70 uppercase font-black">Services Completed</p></div>
+                            <div className="bg-brand-red rounded-[3vh] p-[2.5vh] text-white shadow-xl shadow-red-500/20 shrink-0 border-b-[0.6vh] border-red-800">
+                                <h3 className="font-black opacity-70 uppercase text-[1.4vh] mb-2 tracking-[0.2em]">Service Result</h3>
+                                <div className="flex items-center gap-4 mb-3">
+                                    <div className="bg-white/15 p-2 rounded-xl backdrop-blur-sm border border-white/20"><Zap size="2.5vh" /></div>
+                                    <div><p className="text-[3.2vh] font-black leading-none tracking-tight">1,248</p><p className="text-[1.1vh] opacity-70 uppercase font-black tracking-widest">Services Completed</p></div>
                                 </div>
                                 <div className="flex items-center gap-4">
-                                    <div className="bg-white/10 p-2 rounded-xl"><IndianRupee /></div>
-                                    <div><p className="text-[3.5vh] font-black leading-none">3.5 hrs</p><p className="text-[1.2vh] opacity-70 uppercase font-black">Avg Downtime</p></div>
+                                    <div className="bg-white/15 p-2 rounded-xl backdrop-blur-sm border border-white/20"><IndianRupee size="2.5vh" /></div>
+                                    <div><p className="text-[3.2vh] font-black leading-none tracking-tight">3.5 hrs</p><p className="text-[1.1vh] opacity-70 uppercase font-black tracking-widest">Avg Downtime</p></div>
                                 </div>
                             </div>
 
-                            <div className="bg-slate-900 rounded-[3vh] p-[3vh] flex-1 flex flex-col justify-between text-white relative">
-                                <div className="absolute top-4 right-4 opacity-10"><Zap size="8vh" /></div>
+                            <div className="bg-slate-900 rounded-[3vh] p-[3vh] flex-1 flex flex-col justify-between text-white relative overflow-hidden group shadow-2xl">
+                                <div className="absolute -top-4 -right-4 opacity-5 group-hover:opacity-10 transition-opacity"><Zap size="15vh" /></div>
                                 <div>
                                     <span className="text-brand-red font-black text-[1.2vh] uppercase tracking-[0.3em] mb-2 block">Customer Testimony</span>
-                                    <p className="text-[1.9vh] font-medium leading-relaxed italic mb-4 line-clamp-4">"{REVIEWS[activeReview].text}"</p>
+                                    <p className="text-[1.9vh] font-medium leading-relaxed italic mb-4 line-clamp-4 text-slate-200">"{REVIEWS[activeReview].text}"</p>
                                 </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-[5vh] h-[5vh] rounded-full bg-brand-red flex items-center justify-center font-black text-[2vh]">{REVIEWS[activeReview].author[0]}</div>
-                                    <div><p className="font-black text-[1.8vh]">{REVIEWS[activeReview].author}</p><div className="flex">{[1, 2, 3, 4, 5].map(s => <Zap key={s} size="1vh" className="text-amber-400 fill-amber-400" />)}</div></div>
+                                <div className="flex items-center gap-3 relative z-10">
+                                    <div className="w-[5.5vh] h-[5.5vh] rounded-full bg-gradient-to-tr from-brand-red to-red-500 flex items-center justify-center font-black text-[2.2vh] shadow-lg shadow-brand-red/20">{REVIEWS[activeReview].author[0]}</div>
+                                    <div>
+                                        <p className="font-black text-[1.8vh] tracking-tight">{REVIEWS[activeReview].author}</p>
+                                        <div className="flex gap-0.5 mt-0.5">{[1, 2, 3, 4, 5].map(s => <Zap key={s} size="1.2vh" className="text-amber-400 fill-amber-400" />)}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
