@@ -132,7 +132,7 @@ const TVDashboard = () => {
     return (
         <TVLayout>
             <div className="w-full h-full relative overflow-hidden bg-brand-gray flex flex-col">
-                <header className="bg-brand-red text-white px-[4vw] py-[2vh] shadow-lg z-20 flex justify-between items-center shrink-0 h-[10vh]">
+                <header className="bg-brand-red text-white px-[4vw] py-[2vh] shadow-[0_4px_20px_rgba(215,25,32,0.15)] z-20 flex justify-between items-center shrink-0 h-[10vh]">
                     <div>
                         <div className="flex items-center gap-[1vw]">
                             <div className="bg-white p-[0.5vh] rounded">
@@ -186,7 +186,7 @@ const TVDashboard = () => {
                             </button>
                         </div>
                         <div className="relative z-10 w-full max-w-[75vw] mx-auto px-4 flex flex-col items-center">
-                            <div className="relative bg-white rounded-[4vh] shadow-2xl p-[5vh] w-full flex flex-col items-center text-center border border-white/50 backdrop-blur-sm">
+                            <div className="relative bg-white rounded-[4vh] shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-[5vh] w-full flex flex-col items-center text-center border border-slate-100/50 backdrop-blur-sm">
                                 <div className="absolute top-1/2 -left-[1vw] w-[1vw] h-[20vh] bg-red-700 rounded-l-lg transform -translate-y-1/2 -z-10 shadow-lg hidden md:block"></div>
                                 <div className="absolute top-1/2 -right-[1vw] w-[1vw] h-[20vh] bg-red-700 rounded-r-lg transform -translate-y-1/2 -z-10 shadow-lg hidden md:block"></div>
                                 <div className="absolute top-[40%] -left-[3vw] w-[4vw] h-[30vh] bg-gradient-to-b from-red-600 to-red-800 transform skew-y-12 -z-10 rounded-l-3xl shadow-xl hidden lg:block border-r border-red-900/20"></div>
@@ -246,7 +246,7 @@ const TVDashboard = () => {
                         {/* LEFT COLUMN */}
                         <div className="flex flex-col gap-[1.5vh] h-full justify-between overflow-hidden">
                             {/* Installations Card */}
-                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
+                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex flex-col flex-1 min-h-0">
                                 <div className="flex items-center gap-[1.2vh] mb-[1vh] text-brand-red shrink-0">
                                     <AnimatedIcon src="https://cdn.lordicon.com/surcxhka.json" trigger="loop" delay="2000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4vh" />
                                     <span className="font-bold text-[1.6vh] uppercase tracking-[0.1em] text-slate-400">{!activeTab ? 'Overall' : activeTab}</span>
@@ -265,7 +265,7 @@ const TVDashboard = () => {
                             </div>
 
                             {/* Savings Card */}
-                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
+                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex flex-col flex-1 min-h-0">
                                 <div className="flex items-center gap-[1.2vh] mb-[1vh] text-brand-red shrink-0">
                                     <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="2500" colors={{ primary: "#d71920", secondary: "#334155" }} size="4vh" />
                                     <span className="font-bold text-[1.6vh] uppercase tracking-[0.1em] text-slate-400">Savings</span>
@@ -277,7 +277,7 @@ const TVDashboard = () => {
                             </div>
 
                             {/* Capacity Card */}
-                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-lg border border-slate-100 flex flex-col flex-1 min-h-0">
+                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex flex-col flex-1 min-h-0">
                                 <div className="flex items-center gap-[1.2vh] mb-[1vh] text-brand-red shrink-0">
                                     <AnimatedIcon src="https://cdn.lordicon.com/sbiheqdr.json" trigger="loop" delay="3000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4vh" />
                                     <span className="font-bold text-[1.6vh] uppercase tracking-[0.1em] text-slate-400">Capacity</span>
@@ -291,7 +291,7 @@ const TVDashboard = () => {
 
                         {/* CENTER COLUMN */}
                         <div className="flex flex-col gap-[1.5vh] h-full overflow-hidden">
-                            <div className="flex-1 bg-white rounded-[2vh] border border-slate-100 shadow-xl relative overflow-hidden min-h-0">
+                            <div className="flex-1 bg-white rounded-[2vh] border border-slate-100 shadow-[0_8px_40px_rgb(0,0,0,0.06)] relative overflow-hidden min-h-0">
                                 <IndiaMap data={filteredData} darkMode={false} selectedState={selectedState} className="h-full w-full" />
                                 <div className="absolute bottom-[2vh] left-1/2 -translate-x-1/2 w-full px-[2vw] z-[400]">
                                     <div className="bg-white/95 backdrop-blur-sm rounded-full shadow-2xl border border-slate-200 flex items-center justify-between p-[0.6vh] pl-[1.5vw]">
@@ -304,7 +304,7 @@ const TVDashboard = () => {
                             </div>
 
                             {/* Center Bottom Ratings (Adjusted height to fix overflow) */}
-                            <div className="bg-white rounded-[2vh] shadow-xl p-[1.8vh] flex flex-col justify-between h-[17vh] shrink-0 border border-slate-100 relative overflow-hidden">
+                            <div className="bg-white rounded-[2vh] shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-[1.8vh] flex flex-col justify-between h-[17vh] shrink-0 border border-slate-100 relative overflow-hidden">
                                 <div className="flex justify-between items-center mb-[0.5vh]">
                                     <div className="flex items-center gap-[0.5vw]">
                                         <div className="w-[0.5vh] h-[2.5vh] bg-brand-red rounded-full"></div>
@@ -336,7 +336,7 @@ const TVDashboard = () => {
                         {/* RIGHT COLUMN */}
                         <div className="flex flex-col gap-[1.5vh] h-full overflow-hidden">
                             {/* Legacy Customers (Reformatted to white theme) */}
-                            <div className="bg-white p-[2vh] rounded-[2vh] shadow-xl border border-slate-100 shrink-0">
+                            <div className="bg-white p-[2vh] rounded-[2vh] shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 shrink-0">
                                 <div className="flex justify-between items-start mb-[0.8vh]">
                                     <h3 className="font-bold text-[1.8vh] text-slate-800">Legacy Customers</h3>
                                     <span className="text-emerald-500 text-[1vh] font-black uppercase tracking-widest">Verified Trust</span>
@@ -359,7 +359,7 @@ const TVDashboard = () => {
                             </div>
 
                             {/* Service Result (Increased height by increasing padding and gaps) */}
-                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-xl border border-slate-100 shrink-0">
+                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 shrink-0">
                                 <h3 className="font-bold text-[1.6vh] text-slate-400 uppercase mb-[1.5vh] tracking-widest">Service Result</h3>
                                 <div className="flex flex-col gap-[1.8vh] py-[1vh]">
                                     <div className="flex items-center gap-[1.2vw]">
@@ -378,7 +378,7 @@ const TVDashboard = () => {
                             </div>
 
                             {/* Testimonial Showcase (Reduced gap by using fixed gaps and flex-start) */}
-                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-xl flex-1 flex flex-col justify-start gap-[2vh] border border-slate-100 relative overflow-hidden">
+                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_8px_40px_rgb(0,0,0,0.08)] flex-1 flex flex-col justify-start gap-[2vh] border border-slate-100 relative overflow-hidden">
                                 <div>
                                     <div className="flex justify-between items-center mb-[1.2vh]">
                                         <div className="flex items-center gap-[0.5vw]">
