@@ -244,9 +244,9 @@ const TVDashboard = () => {
                     */
                     <div className="flex-1 w-full grid grid-cols-[20vw_49vw_26vw] gap-[1.2vw] px-[1.5vw] pt-[1.5vh] pb-[1.5vh] overflow-hidden">
                         {/* LEFT COLUMN */}
-                        <div className="flex flex-col gap-[1.5vh] h-full justify-between overflow-hidden">
+                        <div className="grid grid-rows-3 gap-[1.5vh] h-full overflow-hidden">
                             {/* Installations Card */}
-                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_0_20px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col flex-1 min-h-0">
+                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_0_20px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col min-h-0">
                                 <div className="flex items-center gap-[1.2vh] mb-[1vh] text-brand-red shrink-0">
                                     <AnimatedIcon src="https://cdn.lordicon.com/surcxhka.json" trigger="loop" delay="2000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4vh" />
                                     <span className="font-bold text-[1.6vh] uppercase tracking-[0.1em] text-slate-400">{!activeTab ? 'Overall' : activeTab}</span>
@@ -265,7 +265,7 @@ const TVDashboard = () => {
                             </div>
 
                             {/* Savings Card */}
-                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_0_20px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col flex-1 min-h-0">
+                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_0_20px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col min-h-0">
                                 <div className="flex items-center gap-[1.2vh] mb-[1vh] text-brand-red shrink-0">
                                     <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="2500" colors={{ primary: "#d71920", secondary: "#334155" }} size="4vh" />
                                     <span className="font-bold text-[1.6vh] uppercase tracking-[0.1em] text-slate-400">Savings</span>
@@ -277,7 +277,7 @@ const TVDashboard = () => {
                             </div>
 
                             {/* Capacity Card */}
-                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_0_20px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col flex-1 min-h-0">
+                            <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_0_20px_rgba(0,0,0,0.05)] border border-slate-100 flex flex-col min-h-0">
                                 <div className="flex items-center gap-[1.2vh] mb-[1vh] text-brand-red shrink-0">
                                     <AnimatedIcon src="https://cdn.lordicon.com/sbiheqdr.json" trigger="loop" delay="3000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4vh" />
                                     <span className="font-bold text-[1.6vh] uppercase tracking-[0.1em] text-slate-400">Capacity</span>
