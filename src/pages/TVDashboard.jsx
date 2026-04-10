@@ -293,13 +293,16 @@ const TVDashboard = () => {
                         <div className="flex flex-col gap-[1.5vh] h-full overflow-hidden">
                             <div className="flex-1 bg-white rounded-[2vh] border border-slate-100 shadow-[0_0_25px_rgba(0,0,0,0.07)] relative overflow-hidden min-h-0">
                                 <IndiaMap data={filteredData} darkMode={false} selectedState={selectedState} className="h-full w-full" />
-                                <div className="absolute bottom-[2vh] left-1/2 -translate-x-1/2 w-full px-[2vw] z-[400] pointer-events-none">
-                                    <div className="bg-white/95 backdrop-blur-sm rounded-full shadow-2xl border border-slate-200 flex items-center justify-between p-[0.6vh] pl-[1.5vw]">
+                                <div className="absolute bottom-[2vh] left-1/2 -translate-x-1/2 w-full px-[2vw] z-[400]">
+                                    <button 
+                                        onClick={handleSearchNavigate}
+                                        className="w-full bg-white/95 backdrop-blur-sm rounded-full shadow-[0_0_25px_rgba(0,0,0,0.1)] border border-slate-200 flex items-center justify-between p-[0.6vh] pl-[1.8vw] hover:bg-white active:scale-95 transition-all group"
+                                    >
                                         <span className="text-slate-800 text-[2.2vh] font-bold">Find matches near you</span>
-                                        <button onClick={handleSearchNavigate} className="bg-brand-red text-white p-[1.2vh] rounded-full shadow-lg hover:scale-110 active:scale-95 transition-transform pointer-events-auto">
+                                        <div className="bg-brand-red text-white p-[1.2vh] rounded-full shadow-lg group-hover:scale-105 transition-transform">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-[3vh] w-[3vh]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-                                        </button>
-                                    </div>
+                                        </div>
+                                    </button>
                                 </div>
                             </div>
 
