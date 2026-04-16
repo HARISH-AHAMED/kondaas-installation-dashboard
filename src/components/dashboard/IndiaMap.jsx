@@ -132,12 +132,11 @@ const IndiaMap = ({ data, darkMode = false, selectedState = 'Overall', className
                 <MapUpdater selectedState={selectedState} />
 
                 {React.useMemo(() => {
-                    if (!data || !Array.isArray(data)) return [];
+                    if (!data) return [];
                     const cityMap = {};
 
                     data.forEach(item => {
-                        if (!item) return;
-                        const city = item.City ? String(item.City).trim() : 'Unknown';
+                        const city = item.City ? item.City.trim() : 'Unknown';
                         if (!cityMap[city]) {
                             cityMap[city] = {
                                 ...item,

@@ -357,38 +357,42 @@ const TVDashboard = () => {
                                     <h3 className="font-bold text-[1.8vh] text-slate-800">Legacy Customers</h3>
                                     <span className="text-emerald-500 text-[1vh] font-black uppercase tracking-widest">Verified Trust</span>
                                 </div>
-                                <div className="space-y-[0.6vh] mb-[1vh]">
-                                    {[{ l: '3 Year Customers', c: 420 }, { l: '5 Year Customers', c: 285 }, { l: '10 Year Customers', c: 128 }].map(t => (
-                                        <div key={t.l} className="flex justify-between items-center bg-slate-50/50 p-[1vh] rounded-xl border border-slate-100">
-                                            <span className="font-bold text-slate-600 text-[1.4vh]">{t.l}</span>
-                                            <span className="font-black text-slate-900 text-[1.6vh]">{t.c}</span>
+                                <div className="space-y-[0.6vh]">
+                                    {[{ l: '3 Year Customers', a: 234, t: 420 }, { l: '5 Year Customers', a: 180, t: 285 }, { l: '10 Year Customers', a: 95, t: 128 }].map(item => (
+                                        <div key={item.l} className="flex justify-between items-center bg-slate-50/50 p-[1vh] rounded-xl border border-slate-100">
+                                            <span className="font-bold text-slate-600 text-[1.4vh]">{item.l}</span>
+                                            <span className="font-black text-slate-900 text-[1.6vh]">{item.a} / {item.t}</span>
                                         </div>
                                     ))}
                                 </div>
-                                <div className="bg-brand-red/5 p-[1vh] rounded-xl border border-brand-red/10">
-                                    <div className="flex justify-between items-end mb-1">
-                                        <span className="text-brand-red font-black text-[1.1vh] uppercase tracking-[0.05em]">ACTIVE RETENTION</span>
-                                        <span className="font-black text-brand-red text-[2vh]">82%</span>
-                                    </div>
-                                    <div className="h-[0.4vh] bg-white rounded-full overflow-hidden"><div className="h-full bg-brand-red rounded-full" style={{ width: '82%' }}></div></div>
-                                </div>
                             </div>
 
-                            {/* Service Result (Increased height by increasing padding and gaps) */}
+                            {/* Service Result */}
                             <div className="bg-white p-[2.5vh] rounded-[2vh] shadow-[0_0_20px_rgba(0,0,0,0.05)] border border-slate-100 shrink-0">
                                 <h3 className="font-bold text-[1.6vh] text-slate-400 uppercase mb-[1.5vh] tracking-widest">Service Result</h3>
-                                <div className="flex flex-col gap-[1.8vh] py-[1vh]">
-                                    <div className="flex items-center gap-[1.2vw]">
-                                        <div className="bg-slate-50 p-[1vh] rounded-xl border border-slate-100 shrink-0 shadow-sm">
-                                            <AnimatedIcon src="https://cdn.lordicon.com/surcxhka.json" trigger="loop" delay="3500" colors={{ primary: "#d71920", secondary: "#334155" }} size="4vh" />
-                                        </div>
-                                        <div><p className="text-[3.2vh] font-black text-slate-800 leading-none">1,248</p><p className="text-[1.3vh] font-bold text-slate-400 uppercase mt-1">Services Completed</p></div>
+                                
+                                <div className="flex items-center gap-[1.2vw] mb-[1.5vh] pb-[1.5vh] border-b border-slate-50">
+                                    <div>
+                                        <p className="text-[3.2vh] font-black text-slate-800 leading-none">1,248</p>
+                                        <p className="text-[1.3vh] font-bold text-slate-400 uppercase mt-1">Total Services Completed</p>
                                     </div>
-                                    <div className="flex items-center gap-[1.2vw]">
-                                        <div className="bg-slate-50 p-[1vh] rounded-xl border border-slate-100 shrink-0 shadow-sm">
-                                            <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="4000" colors={{ primary: "#d71920", secondary: "#334155" }} size="4vh" />
+                                </div>
+
+                                <div className="flex flex-col gap-[1vh]">
+                                    <div className="bg-slate-50/50 p-[1.2vh] rounded-xl border border-slate-100 flex flex-col gap-[0.5vh]">
+                                        <div className="flex justify-between items-center">
+                                            <span className="font-bold text-slate-700 text-[1.5vh]">Year 1 – Warranty</span>
+                                            <span className="font-black text-slate-800 text-[1.5vh]">1.2 hrs <span className="text-slate-400 text-[1.2vh] font-bold uppercase">Avg Downtime</span></span>
                                         </div>
-                                        <div><p className="text-[3.2vh] font-black text-slate-800 leading-none">3.5 hrs</p><p className="text-[1.3vh] font-bold text-slate-400 uppercase mt-1">Avg Downtime</p></div>
+                                        <span className="font-semibold text-slate-500 text-[1.3vh]">Free Service Coverage</span>
+                                    </div>
+
+                                    <div className="bg-slate-50/50 p-[1.2vh] rounded-xl border border-slate-100 flex flex-col gap-[0.5vh]">
+                                        <div className="flex justify-between items-center">
+                                            <span className="font-bold text-slate-700 text-[1.5vh]">Year 2–3 – AMC</span>
+                                            <span className="font-black text-slate-800 text-[1.5vh]">2.8 hrs <span className="text-slate-400 text-[1.2vh] font-bold uppercase">Avg Downtime</span></span>
+                                        </div>
+                                        <span className="font-semibold text-slate-500 text-[1.3vh]">4 Services / Year</span>
                                     </div>
                                 </div>
                             </div>
