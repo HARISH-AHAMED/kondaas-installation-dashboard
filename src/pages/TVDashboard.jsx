@@ -103,6 +103,56 @@ const TVDashboard = () => {
     const localSavings = filteredData.reduce((acc, curr) => acc + (Number(curr['Savings_Estimate']) || 0), 0);
     const district = districtParam || filteredData[0]?.District || filteredData[0]?.City;
 
+    const categoryDataForStats = !activeTab ? getCombinedData(data) : (data[activeTab] || []);
+
+    const dynamicStats = (() => {
+        let l3a = 0, l3t = 0, l5a = 0, l5t = 0, l10a = 0, l10t = 0;
+        let s3vSum = 0, s5vSum = 0, s10vSum = 0;
+        let s3dSum = 0, s5dSum = 0, s10dSum = 0, avgDowntimeSum = 0;
+        let c3l = 0, c5l = 0, c10l = 0; // legacy counters
+        let c3s = 0, c5s = 0, c10s = 0, cg = 0; // service counters
+        
+        categoryDataForStats.forEach(item => {
+            // Legacy data is usually global - we just sum total active/total across records if multiple exist
+            l3a += Number(item.Legacy_3Yr_Active) || 0; l3t += Number(item.Legacy_3Yr_Total) || 0;
+            l5a += Number(item.Legacy_5Yr_Active) || 0; l5t += Number(item.Legacy_5Yr_Total) || 0;
+            l10a += Number(item.Legacy_10Yr_Active) || 0; l10t += Number(item.Legacy_10Yr_Total) || 0;
+            
+            if (item.Service_3Yr_Visits) { s3vSum += Number(item.Service_3Yr_Visits); c3s++; }
+            if (item.Service_5Yr_Visits) { s5vSum += Number(item.Service_5Yr_Visits); c5s++; }
+            if (item.Service_10Yr_Visits) { s10vSum += Number(item.Service_10Yr_Visits); c10s++; }
+            
+            if (item.Service_3Yr_Downtime) { s3dSum += Number(item.Service_3Yr_Downtime); } 
+            if (item.Service_5Yr_Downtime) { s5dSum += Number(item.Service_5Yr_Downtime); } 
+            if (item.Service_10Yr_Downtime) { s10dSum += Number(item.Service_10Yr_Downtime); } 
+            if (item.Service_Avg_Downtime) { avgDowntimeSum += Number(item.Service_Avg_Downtime); cg++; }
+        });
+        
+        const avg3s_v = c3s > 0 ? (s3vSum / c3s) : 0;
+        const avg5s_v = c5s > 0 ? (s5vSum / c5s) : 0;
+        const avg10s_v = c10s > 0 ? (s10vSum / c10s) : 0;
+
+        const avg3s_d = c3s > 0 ? (s3dSum / c3s) : 0;
+        const avg5s_d = c5s > 0 ? (s5dSum / c5s) : 0;
+        const avg10s_d = c10s > 0 ? (s10dSum / c10s) : 0;
+
+        const globalAvg = cg > 0 ? (avgDowntimeSum / cg) : ((avg3s_d + avg5s_d + avg10s_d) / 3 || 3.1);
+        
+        return {
+            legacy: [
+                { l: '3 Year Customers', a: l3a, t: l3t },
+                { l: '5 Year Customers', a: l5a, t: l5t },
+                { l: '10 Year Customers', a: l10a, t: l10t }
+            ],
+            service: [
+                { l: '3 Year Customers', v: Math.round(avg3s_v).toLocaleString(), d: avg3s_d.toFixed(1) },
+                { l: '5 Year Customers', v: Math.round(avg5s_v).toLocaleString(), d: avg5s_d.toFixed(1) },
+                { l: '10 Year Customers', v: Math.round(avg10s_v).toLocaleString(), d: avg10s_d.toFixed(1) }
+            ],
+            avgDowntime: globalAvg.toFixed(1)
+        };
+    })();
+
     const getLocalSubTotals = () => {
         if (activeTab || (!pincode && !districtParam)) return null;
         const filterFn = (item) => pincode
@@ -329,7 +379,7 @@ const TVDashboard = () => {
                                     <span className="text-emerald-500 text-[1.1vh] font-bold uppercase tracking-widest">Verified Trust</span>
                                 </div>
                                 <div className="space-y-[0.6vh]">
-                                    {[{ l: '3 Year Customers', a: 234, t: 420 }, { l: '5 Year Customers', a: 180, t: 285 }, { l: '10 Year Customers', a: 95, t: 128 }].map(item => (
+                                    {dynamicStats.legacy.map(item => (
                                         <div key={item.l} className="flex justify-between items-center bg-slate-50/50 p-[1vh] rounded-xl border border-[#E5E7EB]">
                                             <span className="font-bold text-[#4B5563] text-[1.5vh]">{item.l}</span>
                                             <span className="font-bold text-[#0A0A0A] text-[1.7vh]">{item.a} / {item.t}</span>
@@ -342,14 +392,14 @@ const TVDashboard = () => {
                             <div className="bg-white p-[1.8vh] px-[2vh] rounded-[2vh] shadow-[0_0_20px_rgba(0,0,0,0.05)] border border-[#E5E7EB] shrink-0">
                                 <div className="mb-[1vh]">
                                     <h3 className="font-bold text-[1.7vh] text-[#4B5563] uppercase tracking-widest mb-[0.2vh]">Service</h3>
-                                    <p className="text-[#4B5563] font-medium text-[1.4vh]">Avg Downtime Across Customers: 3.1 hrs</p>
+                                    <p className="text-[#4B5563] font-medium text-[1.4vh]">Avg Downtime Across Customers: {dynamicStats.avgDowntime} hrs</p>
                                 </div>
                                 
                                 <div className="flex flex-col gap-[0.6vh]">
-                                    {[{ l: '3 Year Customers', v: '1,680', d: 2.5 }, { l: '5 Year Customers', v: '2,140', d: 3.1 }, { l: '10 Year Customers', v: '3,520', d: 3.8 }].map(item => (
+                                    {dynamicStats.service.map(item => (
                                         <div key={item.l} className="flex items-center bg-slate-50/50 py-[0.8vh] px-[1vh] rounded-xl border border-[#E5E7EB] gap-[1vw]">
-                                            <span className="font-bold text-[#4B5563] text-[1.5vh] flex-1">{item.l}</span>
-                                            <span className="font-bold text-[#0A0A0A] text-[1.6vh] flex-1 text-center">{item.v} <span className="text-[#6B7280] font-bold text-[1.2vh] uppercase">Visits</span></span>
+                                            <span className="font-bold text-[#4B5563] text-[1.5vh] flex-1 text-left">{item.l}</span>
+                                            <span className="font-bold text-[#0A0A0A] text-[1.6vh] flex-1 text-center">{item.v} <span className="text-[#6B7280] font-bold text-[1.2vh] uppercase">Visits / Yr</span></span>
                                             <span className="font-bold text-[#DC2626] text-[1.6vh] flex-1 text-right">{item.d} <span className="text-[#6B7280] font-bold text-[1.2vh] uppercase">hrs</span></span>
                                         </div>
                                     ))}
