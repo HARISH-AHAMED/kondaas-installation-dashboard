@@ -5,6 +5,7 @@ import IndiaMap from '../components/dashboard/IndiaMap';
 import { getInstallations } from '../services/api';
 import { IndianRupee, Zap } from 'lucide-react';
 import AnimatedIcon from '../components/common/AnimatedIcon';
+import { calculateSavings } from '../utils/savingsCalculator';
 
 // States available in the dashboard filter
 const STATES = ['Overall', 'Tamil Nadu', 'Kerala'];
@@ -62,7 +63,7 @@ const TVDashboard = () => {
     const calculateStats = (arr) => {
         return {
             homes: arr.reduce((acc, curr) => acc + (Number(curr['Installations']) || 0), 0),
-            savings: arr.reduce((acc, curr) => acc + (Number(curr['Savings_Estimate']) || 0), 0),
+            savings: arr.reduce((acc, curr) => acc + calculateSavings(curr), 0),
             capacity: arr.reduce((acc, curr) => acc + (Number(curr['Capacity_kW']) || 0), 0)
         };
     };
@@ -100,7 +101,7 @@ const TVDashboard = () => {
             : baseDisplayData;
 
     const localHomes = filteredData.reduce((acc, curr) => acc + (Number(curr['Installations']) || 0), 0);
-    const localSavings = filteredData.reduce((acc, curr) => acc + (Number(curr['Savings_Estimate']) || 0), 0);
+    const localSavings = filteredData.reduce((acc, curr) => acc + calculateSavings(curr), 0);
     const district = districtParam || filteredData[0]?.District || filteredData[0]?.City;
 
     const categoryDataForStats = !activeTab ? getCombinedData(data) : (data[activeTab] || []);
@@ -320,7 +321,7 @@ const TVDashboard = () => {
                                     <AnimatedIcon src="https://cdn.lordicon.com/qhviklyi.json" trigger="loop" delay="2500" colors={{ primary: "#DC2626", secondary: "#0A0A0A" }} size="4vh" />
                                     <span className="font-bold text-[1.7vh] uppercase tracking-[0.1em] text-[#6B7280]">Savings</span>
                                 </div>
-                                <div className="flex-1 flex flex-col justify-center">
+                                <div className="flex-1 flex flex-col justify-center min-h-0 -mt-[2vh]">
                                     <div className="text-[8.6vh] font-bold text-[#0A0A0A] leading-none tracking-tight">₹ {(stats.savings / 10000000).toFixed(2)} Cr</div>
                                     <p className="text-[#4B5563] text-[1.7vh] font-medium mt-[0.5vh]">Estimated annual savings</p>
                                 </div>
@@ -332,7 +333,7 @@ const TVDashboard = () => {
                                     <AnimatedIcon src="https://cdn.lordicon.com/sbiheqdr.json" trigger="loop" delay="3000" colors={{ primary: "#DC2626", secondary: "#0A0A0A" }} size="4vh" />
                                     <span className="font-bold text-[1.7vh] uppercase tracking-[0.1em] text-[#6B7280]">Capacity</span>
                                 </div>
-                                <div className="flex-1 flex flex-col justify-center">
+                                <div className="flex-1 flex flex-col justify-center min-h-0 -mt-[2vh]">
                                     <div className="text-[8.6vh] font-bold text-[#0A0A0A] leading-none tracking-tight">{Math.round(stats.capacity || 0).toLocaleString()} <span className="text-[4vh] text-[#6B7280] font-bold">kW</span></div>
                                     <p className="text-[#4B5563] text-[1.7vh] font-medium mt-[0.5vh]">Total installed solar capacity</p>
                                 </div>
@@ -346,10 +347,10 @@ const TVDashboard = () => {
                                 <div className="absolute bottom-[2vh] left-1/2 -translate-x-1/2 w-full px-[2vw] z-[400]">
                                     <button 
                                         onClick={handleSearchNavigate}
-                                        className="w-full bg-white/95 backdrop-blur-sm rounded-full shadow-[0_0_25px_rgba(0,0,0,0.1)] border border-[#E5E7EB] flex items-center justify-between p-[0.6vh] pl-[1.8vw] hover:bg-white active:scale-95 transition-all group"
+                                        className="w-full bg-white/95 backdrop-blur-sm rounded-full shadow-[0_0_25px_rgba(0,0,0,0.1)] border border-[#E5E7EB] flex items-center justify-between p-[0.6vh] pl-[1.8vw] active:scale-95 transition-all group"
                                     >
                                         <span className="text-[#0A0A0A] text-[2.4vh] font-bold">Find matches near you</span>
-                                        <div className="bg-[#DC2626] text-white p-[1.2vh] rounded-full shadow-lg group-hover:scale-105 transition-transform">
+                                        <div className="bg-[#DC2626] text-white p-[1.2vh] rounded-full shadow-lg transition-transform">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-[3vh] w-[3vh]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
                                         </div>
                                     </button>

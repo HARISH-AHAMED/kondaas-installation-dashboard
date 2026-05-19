@@ -5,6 +5,7 @@ import IndiaMap from '../components/dashboard/IndiaMap';
 import { getInstallations } from '../services/api';
 import { Zap, Users, IndianRupee, MapPin } from 'lucide-react';
 import { clsx } from 'clsx';
+import { calculateSavings } from '../utils/savingsCalculator';
 
 const Dashboard = () => {
     const [loading, setLoading] = useState(false); // Default to false if we have cache
@@ -18,7 +19,7 @@ const Dashboard = () => {
     const calculateStats = (items) => {
         const totalInstalls = items.length;
         const totalCap = items.reduce((acc, curr) => acc + (Number(curr.CapacityKW) || 0), 0);
-        const totalSav = items.reduce((acc, curr) => acc + (Number(curr.Savings) || 0), 0);
+        const totalSav = items.reduce((acc, curr) => acc + calculateSavings(curr), 0);
         return {
             totalInstallations: totalInstalls,
             totalCapacity: totalCap,
