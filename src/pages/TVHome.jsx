@@ -26,6 +26,7 @@ const STATE_DISTRICTS = {
 
 const TVHome = () => {
     const [pin, setPin] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const [activeTab, setActiveTab] = useState(searchParams.get('tab') || null);
@@ -51,12 +52,41 @@ const TVHome = () => {
         setPin('');
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (pin.length === 6) {
-            if (activeTab) {
-                navigate(`/?pincode=${pin}&tab=${activeTab}`);
-            } else {
-                navigate(`/?pincode=${pin}`);
+            setIsLoading(true);
+            try {
+                // Fetch the district for the entered pincode to map it to the single district entry in the sheets
+                const response = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+                const data = await response.json();
+                
+                let resolvedDistrict = null;
+                let resolvedState = null;
+                
+                if (data && data[0] && data[0].Status === 'Success') {
+                    // The API can return multiple post offices, we just need the District of the first one
+                    resolvedDistrict = data[0].PostOffice[0].District;
+                    resolvedState = data[0].PostOffice[0].State;
+                }
+                
+                if (resolvedDistrict) {
+                    // Navigate using the resolved district, but pass the entered pincode so we can still display it
+                    const queryParams = new URLSearchParams();
+                    queryParams.append('district', resolvedDistrict);
+                    if (resolvedState) queryParams.append('state', resolvedState);
+                    queryParams.append('enteredPincode', pin);
+                    if (activeTab) queryParams.append('tab', activeTab);
+                    
+                    navigate(`/?${queryParams.toString()}`);
+                } else {
+                    // Fallback to strict pincode search if API fails to find it
+                    navigate(activeTab ? `/?pincode=${pin}&tab=${activeTab}` : `/?pincode=${pin}`);
+                }
+            } catch (error) {
+                console.error("Failed to fetch pincode API", error);
+                navigate(activeTab ? `/?pincode=${pin}&tab=${activeTab}` : `/?pincode=${pin}`);
+            } finally {
+                setIsLoading(false);
             }
         } else {
             alert("Please enter a 6-digit PIN");
@@ -160,7 +190,12 @@ const TVHome = () => {
 
                     {/* ── PINCODE MODE ── */}
                     {inputMode === 'pincode' && (
-                        <div className="w-full max-w-[50vw]">
+                        <div className="w-full max-w-[50vw] relative">
+                            {isLoading && (
+                                <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-50 flex items-center justify-center rounded-[2vh]">
+                                    <div className="animate-spin rounded-full h-[6vh] w-[6vh] border-b-4 border-brand-red"></div>
+                                </div>
+                            )}
                             <Keypad
                                 value={pin}
                                 onKeyPress={handleKeyPress}

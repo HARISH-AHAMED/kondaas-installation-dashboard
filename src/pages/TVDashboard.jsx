@@ -16,6 +16,7 @@ const TVDashboard = () => {
     const pincode = searchParams.get('pincode');
     const districtParam = searchParams.get('district');
     const stateParam = searchParams.get('state');
+    const enteredPincode = searchParams.get('enteredPincode');
     const urlTab = searchParams.get('tab');
 
     const [data, setData] = useState(() => {
@@ -102,7 +103,7 @@ const TVDashboard = () => {
 
     const localHomes = filteredData.reduce((acc, curr) => acc + (Number(curr['Installations']) || 0), 0);
     const localSavings = filteredData.reduce((acc, curr) => acc + calculateSavings(curr), 0);
-    const district = districtParam || filteredData[0]?.District || filteredData[0]?.City;
+    const district = districtParam || filteredData[0]?.District || filteredData[0]?.City || '';
 
     const categoryDataForStats = !activeTab ? getCombinedData(data) : (data[activeTab] || []);
 
@@ -250,10 +251,10 @@ const TVDashboard = () => {
                                                 <svg className="w-[3vh] h-[3vh]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" /></svg>
                                             </div>
                                             <h2 className="text-[4vh] font-medium text-[#0A0A0A] leading-none">
-                                                Kondaas {!activeTab ? 'Homes' : <span className="text-[#DC2626] font-bold">{activeTab === 'residential' ? 'Residentials' : activeTab === 'commercial' ? 'Commercials' : 'Water Heaters'}</span>} in <span className="text-[#DC2626] font-bold">{districtParam || pincode}</span>
+                                                Kondaas {!activeTab ? 'Homes' : <span className="text-[#DC2626] font-bold">{activeTab === 'residential' ? 'Residentials' : activeTab === 'commercial' ? 'Commercials' : 'Water Heaters'}</span>} in <span className="text-[#DC2626] font-bold">{enteredPincode || districtParam || pincode}</span>
                                             </h2>
                                         </div>
-                                        <p className="text-[2.7vh] font-bold text-[#4B5563] uppercase tracking-wider">{districtParam ? stateParam : district}</p>
+                                        <p className="text-[2.7vh] font-bold text-[#4B5563] uppercase tracking-wider">{enteredPincode ? district : (districtParam ? stateParam : district)}</p>
                                     </div>
                                 </div>
 
